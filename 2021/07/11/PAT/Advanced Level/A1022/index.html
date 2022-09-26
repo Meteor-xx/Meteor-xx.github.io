@@ -1,37 +1,289 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>A1022 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="A1022 Digital Library (30 point(s))A Digital Library contains millions of books, stored according to their titles, authors, key words of their abstracts, publishers, and published years. Each book is">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A1022">
+<meta property="og:url" content="http://example.com/2021/07/11/PAT/Advanced%20Level/A1022/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="A1022 Digital Library (30 point(s))A Digital Library contains millions of books, stored according to their titles, authors, key words of their abstracts, publishers, and published years. Each book is">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-07-11T14:52:00.000Z">
+<meta property="article:modified_time" content="2021-08-27T13:11:46.204Z">
+<meta property="article:author" content="Meteor">
+<meta property="article:tag" content="Advanced Level">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-PAT/Advanced Level/A1022" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/07/11/PAT/Advanced%20Level/A1022/" class="article-date">
+  <time class="dt-published" datetime="2021-07-11T14:52:00.000Z" itemprop="datePublished">2021-07-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/PAT/">PAT</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      A1022
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="A1022-Digital-Library-30-point-s"><a href="#A1022-Digital-Library-30-point-s" class="headerlink" title="A1022 Digital Library (30 point(s))"></a>A1022 Digital Library (30 point(s))</h1><p>A Digital Library contains millions of books, stored according to their titles, authors, key words of their abstracts, publishers, and published years. Each book is assigned an unique 7-digit number as its ID. Given any query from a reader, you are supposed to output the resulting books, sorted in increasing order of their ID’s.</p>
+<span id="more"></span>
+<h2 id="Input-Specification"><a href="#Input-Specification" class="headerlink" title="Input Specification:"></a>Input Specification:</h2><p>Each input file contains one test case. For each case, the first line contains a positive integer N (≤10<sub>4</sub>) which is the total number of books. Then N blocks follow, each contains the information of a book in 6 lines:</p>
+<ul>
+<li>Line #1: the 7-digit ID number;</li>
+<li>Line #2: the book title – a string of no more than 80 characters;</li>
+<li>Line #3: the author – a string of no more than 80 characters;</li>
+<li>Line #4: the key words – each word is a string of no more than 10 characters without any white space, and the keywords are separated by exactly one space;</li>
+<li>Line #5: the publisher – a string of no more than 80 characters;</li>
+<li>Line #6: the published year – a 4-digit number which is in the range [1000, 3000].<br>It is assumed that each book belongs to one author only, and contains no more than 5 key words; there are no more than 1000 distinct key words in total; and there are no more than 1000 distinct publishers.</li>
+</ul>
+<p>After the book information, there is a line containing a positive integer M (≤1000) which is the number of user’s search queries. Then M lines follow, each in one of the formats shown below:</p>
+<ul>
+<li>1: a book title</li>
+<li>2: name of an author</li>
+<li>3: a key word</li>
+<li>4: name of a publisher</li>
+<li>5: a 4-digit number representing the year</li>
+</ul>
+<h2 id="Output-Specification"><a href="#Output-Specification" class="headerlink" title="Output Specification:"></a>Output Specification:</h2><p>For each query, first print the original query in a line, then output the resulting book ID’s in increasing order, each occupying a line. If no book is found, print Not Found instead.</p>
+<h2 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input:"></a>Sample Input:</h2><blockquote>
+<p>3<br>1111111<br>The Testing Book<br>Yue Chen<br>test code debug sort keywords<br>ZUCS Print<br>2011<br>3333333<br>Another Testing Book<br>Yue Chen<br>test code sort keywords<br>ZUCS Print2<br>2012<br>2222222<br>The Testing Book<br>CYLL<br>keywords debug book<br>ZUCS Print2<br>2011<br>6<br>1: The Testing Book<br>2: Yue Chen<br>3: keywords<br>4: ZUCS Print<br>5: 2011<br>3: blablabla</p>
+</blockquote>
+<h2 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output:"></a>Sample Output:</h2><blockquote>
+<p>1: The Testing Book<br>1111111<br>2222222<br>2: Yue Chen<br>1111111<br>3333333<br>3: keywords<br>1111111<br>2222222<br>3333333<br>4: ZUCS Print<br>1111111<br>5: 2011<br>1111111<br>2222222<br>3: blablabla<br>Not Found</p>
+</blockquote>
+<h2 id="code"><a href="#code" class="headerlink" title="code"></a>code</h2><div><div class="fold_hider"><div class="close hider_title">点我折叠</div></div><div class="fold">
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">book</span>&#123;</span><br><span class="line">    string id,name,author;</span><br><span class="line">    set&lt;string&gt; keywords;</span><br><span class="line">    string publisher,year;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> n,m;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    vector&lt;book&gt; books;</span><br><span class="line">    <span class="keyword">while</span>(n--)&#123;<span class="comment">//读入n本书</span></span><br><span class="line">        string id,name,author,publisher,year;</span><br><span class="line">        set&lt;string&gt; keywords;</span><br><span class="line">        cin &gt;&gt; id;</span><br><span class="line">        <span class="built_in">getchar</span>();<span class="comment">//把回车读掉</span></span><br><span class="line">        <span class="built_in">getline</span>(cin,name);</span><br><span class="line">        <span class="built_in">getline</span>(cin,author);</span><br><span class="line">        string line;</span><br><span class="line">        <span class="built_in">getline</span>(cin,line);</span><br><span class="line">        <span class="function">stringstream <span class="title">ssin</span><span class="params">(line)</span></span>;</span><br><span class="line">        string keyword;</span><br><span class="line">        <span class="keyword">while</span>(ssin &gt;&gt; keyword) keywords.<span class="built_in">insert</span>(keyword);</span><br><span class="line">        <span class="built_in">getline</span>(cin,publisher);</span><br><span class="line">        <span class="built_in">getline</span>(cin,year);</span><br><span class="line">        books.<span class="built_in">push_back</span>(&#123;id,name,author,keywords,publisher,year&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    cin &gt;&gt; m;</span><br><span class="line">    <span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">while</span>(m--)&#123;</span><br><span class="line">        string line;</span><br><span class="line">        <span class="built_in">getline</span>(cin,line);</span><br><span class="line">        string content = line.<span class="built_in">substr</span>(<span class="number">3</span>);</span><br><span class="line">        <span class="type">char</span> type = line[<span class="number">0</span>];</span><br><span class="line">        vector&lt;string&gt; ans;</span><br><span class="line">        cout &lt;&lt; line &lt;&lt; endl;</span><br><span class="line">        <span class="keyword">if</span>(type == <span class="string">&#x27;1&#x27;</span>)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">auto</span>&amp; book:books)&#123;</span><br><span class="line">                <span class="keyword">if</span>(book.name == content)</span><br><span class="line">                    ans.<span class="built_in">push_back</span>(book.id);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(type == <span class="string">&#x27;2&#x27;</span>)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">auto</span>&amp; book:books)&#123;</span><br><span class="line">                <span class="keyword">if</span>(book.author == content)</span><br><span class="line">                    ans.<span class="built_in">push_back</span>(book.id);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(type == <span class="string">&#x27;3&#x27;</span>)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">auto</span>&amp; book:books)&#123;</span><br><span class="line">                <span class="keyword">if</span>(book.keywords.<span class="built_in">count</span>(content))</span><br><span class="line">                    ans.<span class="built_in">push_back</span>(book.id);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(type == <span class="string">&#x27;4&#x27;</span>)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">auto</span>&amp; book:books)&#123;</span><br><span class="line">                <span class="keyword">if</span>(book.publisher == content)</span><br><span class="line">                    ans.<span class="built_in">push_back</span>(book.id);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(type == <span class="string">&#x27;5&#x27;</span>)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">auto</span>&amp; book:books)&#123;</span><br><span class="line">                <span class="keyword">if</span>(book.year == content)</span><br><span class="line">                    ans.<span class="built_in">push_back</span>(book.id);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(!ans.<span class="built_in">size</span>()) cout &lt;&lt; <span class="string">&quot;Not Found&quot;</span> &lt;&lt; endl;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="built_in">sort</span>(ans.<span class="built_in">begin</span>(),ans.<span class="built_in">end</span>());</span><br><span class="line">            <span class="keyword">for</span>(string id:ans)</span><br><span class="line">                cout &lt;&lt; id &lt;&lt; endl;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div></div>
+<blockquote>
+<p>结果： Accepted</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/07/11/PAT/Advanced%20Level/A1022/" data-id="cl8igjlqs001kbbgb37qs9fzo" data-title="A1022" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Advanced-Level/" rel="tag">Advanced Level</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/07/11/PAT/Advanced%20Level/A1020/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          A1020
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/07/11/PAT/Advanced%20Level/A1023/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">A1023</div>
+    </a>
+  
+</nav>
+
+  
+</article>
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
-
-{% block page_class %}page-post-detail{% endblock %}
-
-
-{% block content %}
-
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
-
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/">Blog</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Deep-Learning/">Deep Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-web/">Java web</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learning/">Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/PAT/">PAT</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ros-%E6%AF%95%E8%AE%BE/">ros&毕设</a></li></ul>
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Advanced-Level/" rel="tag">Advanced Level</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Basic-Level/" rel="tag">Basic Level</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bugs/" rel="tag">Bugs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lhy2021/" rel="tag">lhy2021</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/problems/" rel="tag">problems</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ros/" rel="tag">ros</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/servelet/" rel="tag">servelet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li></ul>
+    </div>
+  </div>
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Advanced-Level/" style="font-size: 20px;">Advanced Level</a> <a href="/tags/Basic-Level/" style="font-size: 16.67px;">Basic Level</a> <a href="/tags/Bugs/" style="font-size: 10px;">Bugs</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/lhy2021/" style="font-size: 10px;">lhy2021</a> <a href="/tags/problems/" style="font-size: 10px;">problems</a> <a href="/tags/ros/" style="font-size: 13.33px;">ros</a> <a href="/tags/servelet/" style="font-size: 10px;">servelet</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 10px;">爬虫</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">August 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/09/26/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2021/09/06/deeplearning-lhy2021/description-up/">description-up</a>
+          </li>
+        
+          <li>
+            <a href="/2021/08/27/BlogBugs/tagError/">翻页标签错误</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/13/Python/%E8%AF%9B%E4%BB%99/">梦回诛仙之爬虫</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/11/PAT/Advanced%20Level/A1001/">A1001</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 Meteor<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/dsr50_2101.model.json"},"display":{"position":"right","width":400,"height":500},"mobile":{"show":true,"scale":0.01},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

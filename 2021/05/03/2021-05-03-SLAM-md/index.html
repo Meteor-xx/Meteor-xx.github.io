@@ -1,37 +1,358 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>学习&amp;使用SLAM | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="开始一个机器人SLAM项目之前 机器人必备条件硬件要求SLAM常用功能包的基本要求（该要求更适用SLAM算法）  差分轮式机器人，可使用Twist速度指令控制 机器人必须安装激光雷达等测距设备，可以获取环境深度信息 最好使用正方形和圆形的机器人，其他为外形的机器人虽然可以正常使用，但是效果很可能不佳">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习&amp;使用SLAM">
+<meta property="og:url" content="http://example.com/2021/05/03/2021-05-03-SLAM-md/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="开始一个机器人SLAM项目之前 机器人必备条件硬件要求SLAM常用功能包的基本要求（该要求更适用SLAM算法）  差分轮式机器人，可使用Twist速度指令控制 机器人必须安装激光雷达等测距设备，可以获取环境深度信息 最好使用正方形和圆形的机器人，其他为外形的机器人虽然可以正常使用，但是效果很可能不佳">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2021-05-03-SLAM-md/gmapping.png">
+<meta property="og:image" content="http://example.com/2021-05-03-SLAM-md/gmapping_install.png">
+<meta property="og:image" content="http://example.com/2021-05-03-SLAM-md/gazebo_launch.png">
+<meta property="og:image" content="http://example.com/2021-05-03-SLAM-md/rviz_launch.png">
+<meta property="og:image" content="http://example.com/2021-05-03-SLAM-md/gmapping_created.png">
+<meta property="og:image" content="http://example.com/2021-05-03-SLAM-md/gmapping_file.png">
+<meta property="og:image" content="http://example.com/2021-05-03-SLAM-md/hector_slam.png">
+<meta property="og:image" content="http://example.com/2021-05-03-SLAM-md/hector_install.png">
+<meta property="og:image" content="http://example.com/2021-05-03-SLAM-md/cartographer-demo.png">
+<meta property="og:image" content="http://example.com/2021-05-03-SLAM-md/ros_move_skeleton.png">
+<meta property="og:image" content="http://example.com/2021-05-03-SLAM-md/move_base_skeleton.png">
+<meta property="og:image" content="http://example.com/2021-05-03-SLAM-md/move_base_topic.png">
+<meta property="og:image" content="http://example.com/2021-05-03-SLAM-md/amcl_.png">
+<meta property="og:image" content="http://example.com/2021-05-03-SLAM-md/amcl_topic.png">
+<meta property="og:image" content="http://example.com/2021-05-03-SLAM-md/grid_theory.png">
+<meta property="article:published_time" content="2021-05-03T08:03:57.000Z">
+<meta property="article:modified_time" content="2021-05-08T08:20:04.705Z">
+<meta property="article:author" content="Meteor">
+<meta property="article:tag" content="ros">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021-05-03-SLAM-md/gmapping.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-2021-05-03-SLAM-md" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/05/03/2021-05-03-SLAM-md/" class="article-date">
+  <time class="dt-published" datetime="2021-05-03T08:03:57.000Z" itemprop="datePublished">2021-05-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/ros-%E6%AF%95%E8%AE%BE/">ros&毕设</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      学习&amp;使用SLAM
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>开始一个机器人SLAM项目之前</p>
+<h1 id="机器人必备条件"><a href="#机器人必备条件" class="headerlink" title="机器人必备条件"></a>机器人必备条件</h1><h2 id="硬件要求"><a href="#硬件要求" class="headerlink" title="硬件要求"></a>硬件要求</h2><p>SLAM常用功能包的基本要求（该要求更适用SLAM算法）</p>
+<ol>
+<li>差分轮式机器人，可使用Twist速度指令控制</li>
+<li>机器人必须安装激光雷达等测距设备，可以获取环境深度信息</li>
+<li>最好使用正方形和圆形的机器人，其他为外形的机器人虽然可以正常使用，但是效果很可能不佳</li>
+</ol>
+<span id="more"></span>
+<h2 id="深度信息"><a href="#深度信息" class="headerlink" title="深度信息"></a>深度信息</h2><ul>
+<li>angle_min 可检测范围的起始角度</li>
+<li>angle_max 可检测范围的终止角度，与angle_min组成激光雷达的可检测范围</li>
+<li>angle_increment 相邻数据帧之间的角度步长</li>
+<li>time_increment 采集到相邻数据帧之间的时间步长，当传感器处于相对运动状态时进行补偿使用</li>
+<li>scan_time 采集一帧数据所需要的时间</li>
+<li>range_min 最近可检测深度的阈值</li>
+<li>range_max 最远可检测深度的阈值</li>
+<li>ranges 一帧深度数据的存储数组<br>可使用<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosmsg show sensor_msgs/LaserScan</span><br></pre></td></tr></table></figure>
+查看参数</li>
+</ul>
+<p>Kinect等RGB-D摄像头，也可以通过红外摄像头获取周围环境的深度信息，使用depthimage_to_laserscan功能包</p>
+<h2 id="里程计信息"><a href="#里程计信息" class="headerlink" title="里程计信息"></a>里程计信息</h2><p>注意，ros中左右坐标系使用的是右手坐标系，旋转坐标系也是右手坐标系</p>
+<ul>
+<li>pose 机器人当前位置坐标，包括机器人的XYZ三轴位置与方向参数，以及用于校正误差的协方差矩阵</li>
+<li>twist 机器人当前的运动状态，包括XYZ三轴的线速度与角速度，以及用于校正误差的协方差矩阵<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosmsg show nav_msgs/Odometry</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="仿真环境"><a href="#仿真环境" class="headerlink" title="仿真环境"></a>仿真环境</h2><p>一般使用gazebo + rviz进行仿真,使用Building Editor创建仿真环境</p>
+<h1 id="ROS-SLAM功能包使用方法"><a href="#ROS-SLAM功能包使用方法" class="headerlink" title="ROS SLAM功能包使用方法"></a>ROS SLAM功能包使用方法</h1><h2 id="gamapping功能包"><a href="#gamapping功能包" class="headerlink" title="gamapping功能包"></a>gamapping功能包</h2><p>论文可参考 <a target="_blank" rel="noopener" href="http://openslam.org/gmapping.html">http://openslam.org/gmapping.html</a></p>
+<blockquote>
+<ul>
+<li>基于激光雷达</li>
+<li>Rao-Blackwellized粒子滤波算法</li>
+<li>二维栅格地图</li>
+<li>需要机器人提供里程计信息</li>
+<li>OpenSlam开源算法</li>
+<li>输出地图话题 nav_msgs&#x2F;OccupancyGrid</li>
+</ul>
+</blockquote>
+<p><img src="/../2021-05-03-SLAM-md/gmapping.png" alt="jpg"><br><img src="/../2021-05-03-SLAM-md/gmapping_install.png" alt="jpg"></p>
+<h3 id="配置gmapping节点"><a href="#配置gmapping节点" class="headerlink" title="配置gmapping节点"></a>配置gmapping节点</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mbot_navigation/launch/gmapping.launch</span><br></pre></td></tr></table></figure>
+<p>参数说明可参考 <a target="_blank" rel="noopener" href="http://wiki.ros.org/gmapping">http://wiki.ros.org/gmapping</a></p>
+<h3 id="gmapping使用demo"><a href="#gmapping使用demo" class="headerlink" title="gmapping使用demo"></a>gmapping使用demo</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 启动gazebo仿真</span><br><span class="line">roslaunch mbot_gazebo mbot_laser_nav_gazebo.launch</span><br></pre></td></tr></table></figure>
+<p><img src="/../2021-05-03-SLAM-md/gazebo_launch.png" alt="jpg"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 启动rviz建图</span><br><span class="line">roslaunch mbot_navigation gmapping_demo.launch</span><br></pre></td></tr></table></figure>
+<p><img src="/../2021-05-03-SLAM-md/rviz_launch.png" alt="jpg"><br>上图中，红色点阵为激光雷达扫描到的信息，灰色点域即为gmapping已经构建好的地图<br>接下来，启动键盘控制节点，操纵机器人移动以构建完整地图</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 启动键盘控制节点</span><br><span class="line">roslaunch mbot_teleop mbot_teleop.launch</span><br></pre></td></tr></table></figure>
+<p>控制机器人移动绕demo地图旋转一周，在rviz看到构建出完整的地图<br><img src="/../2021-05-03-SLAM-md/gmapping_created.png" alt="jpg"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 保存地图</span><br><span class="line"># 安装map_server功能包</span><br><span class="line">sudo apt-get install ros-melodic-map-server</span><br><span class="line"># 保存地图命令</span><br><span class="line">rosrun map_server map_saver -f cloister_gampping</span><br></pre></td></tr></table></figure>
+<p>保存为以下两文件在根目录中<br><img src="/../2021-05-03-SLAM-md/gmapping_file.png" alt="jpg"><br>其中.yaml文件作为日后加载地图时的配置文件，定义机器人位置，地图位置等</p>
+<h2 id="hector-slam功能包"><a href="#hector-slam功能包" class="headerlink" title="hector_slam功能包"></a>hector_slam功能包</h2><blockquote>
+<ul>
+<li>基于激光雷达</li>
+<li>高斯牛顿方法</li>
+<li>二维栅格地图</li>
+<li>不需要里程计信息</li>
+<li>输出地图话题 nav_msgs&#x2F;OccupancyGrid</li>
+</ul>
+</blockquote>
+<p><img src="/../2021-05-03-SLAM-md/hector_slam.png" alt="jpg"><br><img src="/../2021-05-03-SLAM-md/hector_install.png" alt="jpg"></p>
+<h3 id="配置gmapping节点-1"><a href="#配置gmapping节点-1" class="headerlink" title="配置gmapping节点"></a>配置gmapping节点</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mbot_navigation/launch/hector.launch</span><br></pre></td></tr></table></figure>
+<p>参数说明可参考 <a target="_blank" rel="noopener" href="http://wiki.ros.org/hector_slam">http://wiki.ros.org/hector_slam</a></p>
+<h2 id="cartographer功能包——最新"><a href="#cartographer功能包——最新" class="headerlink" title="cartographer功能包——最新"></a>cartographer功能包——最新</h2><blockquote>
+<ul>
+<li>2016年10月5日由谷歌开源</li>
+<li>基于图网络的优化方法</li>
+<li>二维或三维条件下的定位及建图功能</li>
+<li>设计目的是在计算资源有限的情况下，实时获取相对较高精度的2D地图</li>
+<li>主要基于激光雷达</li>
+<li>后续会支持更多传感器和机器人平台，同时不断增加新的功能</li>
+</ul>
+</blockquote>
+<p><img src="/../2021-05-03-SLAM-md/cartographer-demo.png" alt="jpg"><br>未集成到ros软件园，安装较为复杂。需要通过源码编译方式进行安装</p>
+<h1 id="ROS中的导航框架"><a href="#ROS中的导航框架" class="headerlink" title="ROS中的导航框架"></a>ROS中的导航框架</h1><p><img src="/../2021-05-03-SLAM-md/ros_move_skeleton.png" alt="jpg"></p>
+<h2 id="move-base"><a href="#move-base" class="headerlink" title="move_base"></a>move_base</h2><h3 id="全局路径规划-global-planner"><a href="#全局路径规划-global-planner" class="headerlink" title="全局路径规划(global planner)"></a>全局路径规划(global planner)</h3><blockquote>
+<p>*全局最优路径规划<br><em>Dijkstra或A</em>算法</p>
+</blockquote>
+<h3 id="本地实时规划-local-planner"><a href="#本地实时规划-local-planner" class="headerlink" title="本地实时规划(local planner)"></a>本地实时规划(local planner)</h3><blockquote>
+<p>*规划机器人每个周期内的线速度、角速度，使之尽量符合全局最优路径<br>*实时避障<br>*Trajectory Rollout 和 Dynamic Window Approaches算法<br>*搜索躲避和行进的多条路径，综合各评价标准选取最优路径</p>
+</blockquote>
+<p><img src="/../2021-05-03-SLAM-md/move_base_skeleton.png" alt="jpg"></p>
+<h3 id="move-base功能包中的话题和服务"><a href="#move-base功能包中的话题和服务" class="headerlink" title="move_base功能包中的话题和服务"></a>move_base功能包中的话题和服务</h3><p><img src="/../2021-05-03-SLAM-md/move_base_topic.png" alt="jpg"></p>
+<h2 id="amcl概率定位功能包"><a href="#amcl概率定位功能包" class="headerlink" title="amcl概率定位功能包"></a>amcl概率定位功能包</h2><blockquote>
+<p>蒙特卡罗定位方法<br>二维环境定位<br>针对已有地图使用粒子滤波器跟踪一个机器人的姿态<br><img src="/../2021-05-03-SLAM-md/amcl_.png" alt="jpg"></p>
+</blockquote>
+<h3 id="amcl功能包中的话题和服务"><a href="#amcl功能包中的话题和服务" class="headerlink" title="amcl功能包中的话题和服务"></a>amcl功能包中的话题和服务</h3><p><img src="/../2021-05-03-SLAM-md/amcl_topic.png" alt="jpg"></p>
+<h1 id="知识补充"><a href="#知识补充" class="headerlink" title="知识补充"></a>知识补充</h1><h2 id="栅格地图取值原理"><a href="#栅格地图取值原理" class="headerlink" title="栅格地图取值原理"></a>栅格地图取值原理</h2><p><img src="/../2021-05-03-SLAM-md/grid_theory.png" alt="jpg"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/05/03/2021-05-03-SLAM-md/" data-id="cl8igjlqa0003bbgb7bsy740d" data-title="学习&amp;使用SLAM" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ros/" rel="tag">ros</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/07/06/PAT/Basic%20Level/B1036/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          B1036
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/04/11/2021-04-10-roundAvator/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">为亲爱的02头像换上圆形并旋转</div>
+    </a>
+  
+</nav>
+
+  
+</article>
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
-
-{% block page_class %}page-post-detail{% endblock %}
-
-
-{% block content %}
-
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
-
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/">Blog</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Deep-Learning/">Deep Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-web/">Java web</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learning/">Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/PAT/">PAT</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ros-%E6%AF%95%E8%AE%BE/">ros&毕设</a></li></ul>
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Advanced-Level/" rel="tag">Advanced Level</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Basic-Level/" rel="tag">Basic Level</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bugs/" rel="tag">Bugs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lhy2021/" rel="tag">lhy2021</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/problems/" rel="tag">problems</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ros/" rel="tag">ros</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/servelet/" rel="tag">servelet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li></ul>
+    </div>
+  </div>
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Advanced-Level/" style="font-size: 20px;">Advanced Level</a> <a href="/tags/Basic-Level/" style="font-size: 16.67px;">Basic Level</a> <a href="/tags/Bugs/" style="font-size: 10px;">Bugs</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/lhy2021/" style="font-size: 10px;">lhy2021</a> <a href="/tags/problems/" style="font-size: 10px;">problems</a> <a href="/tags/ros/" style="font-size: 13.33px;">ros</a> <a href="/tags/servelet/" style="font-size: 10px;">servelet</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 10px;">爬虫</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">August 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/09/26/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2021/09/06/deeplearning-lhy2021/description-up/">description-up</a>
+          </li>
+        
+          <li>
+            <a href="/2021/08/27/BlogBugs/tagError/">翻页标签错误</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/13/Python/%E8%AF%9B%E4%BB%99/">梦回诛仙之爬虫</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/11/PAT/Advanced%20Level/A1001/">A1001</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 Meteor<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/dsr50_2101.model.json"},"display":{"position":"right","width":400,"height":500},"mobile":{"show":true,"scale":0.01},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
